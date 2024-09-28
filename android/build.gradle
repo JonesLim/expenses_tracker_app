@@ -1,3 +1,15 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Add your classpath dependencies for plugins
+        classpath 'com.google.gms:google-services:4.3.15'  // Use the latest version
+        // If you're using other plugins like Firebase or Kotlin, add them here
+    }
+}
+
 allprojects {
     repositories {
         google()
