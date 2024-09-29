@@ -9,6 +9,8 @@ import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 class AddExpenseScreen extends StatefulWidget {
+    // final String userId;
+
   const AddExpenseScreen({super.key});
 
   @override
@@ -107,7 +109,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                                 )
                               : Image.asset(
                                   'assets/categories/${expense.category.icon}.gif',
-                                  scale: 2.0,
+                                  scale: 6.0,
                                 ),
                           suffixIcon: IconButton(
                             onPressed: () async {

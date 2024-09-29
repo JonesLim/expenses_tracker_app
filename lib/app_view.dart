@@ -1,4 +1,7 @@
 import 'package:expense_repository/expense_repository.dart';
+import 'package:expenses_tracker/screens/authentication/blocs/authentication_bloc/authentication_bloc.dart';
+import 'package:expenses_tracker/screens/authentication/blocs/sign_in_bloc/sign_in_bloc.dart';
+import 'package:expenses_tracker/screens/authentication/views/welcome_screen.dart';
 import 'package:expenses_tracker/screens/home/blocs/get_expenses_bloc/get_expenses_bloc.dart';
 import 'package:expenses_tracker/screens/home/views/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +26,22 @@ class MyAppView extends StatelessWidget {
           outline: Color(0xff596475),
         ),
       ),
-      home: BlocProvider(
-        create: (context) => GetExpensesBloc(FirebaseExpenseRepo())..add(GetExpenses()),
-        child: const HomeScreen(),
+      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+          if (state.status == AuthenticationStatus.authenticated) {
+            return BlocProvider(
+              create: (context) => GetExpensesBloc(FirebaseExpenseRepo())..add(GetExpenses()),
+              child: const HomeScreen(),
+            );
+          } else {
+            return BlocProvider(
+              create: (context) => SignInBloc(
+                userRepository: context.read<AuthenticationBloc>().userRepository,
+              ),
+              child: const WelcomeScreen(),
+            );
+          }
+        },
       ),
     );
   }

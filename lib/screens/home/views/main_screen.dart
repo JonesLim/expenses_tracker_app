@@ -24,22 +24,22 @@ class MainScreen extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Stack(
+                    const Stack(
                       alignment: Alignment.center,
-                      children: [
-                        Container(
-                          width: 50.0,
-                          height: 50.0,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.amber,
-                          ),
-                        ),
-                        Icon(
-                          CupertinoIcons.person_fill,
-                          color: Theme.of(context).colorScheme.outline,
-                        )
-                      ],
+                      // children: [
+                      //   Container(
+                      //     width: 50.0,
+                      //     height: 50.0,
+                      //     decoration: const BoxDecoration(
+                      //       shape: BoxShape.circle,
+                      //       color: Colors.amber,
+                      //     ),
+                      //   ),
+                      //   Icon(
+                      //     CupertinoIcons.person_fill,
+                      //     color: Theme.of(context).colorScheme.outline,
+                      //   )
+                      // ],
                     ),
                     const SizedBox(
                       width: 8.0,
@@ -69,6 +69,7 @@ class MainScreen extends StatelessWidget {
                 IconButton(
                     onPressed: () {},
                     icon: const Icon(CupertinoIcons.settings)),
+                // onPressed: () {}, icon: const Icon(CupertinoIcons.power)),
               ],
             ),
             const SizedBox(
@@ -94,20 +95,20 @@ class MainScreen extends StatelessWidget {
                       offset: Offset(5.0, 5.0)),
                 ],
               ),
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'Total Balance',
                     style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.white,
                         fontWeight: FontWeight.w600),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 12.0,
                   ),
-                  const Text(
+                  Text(
                     '\$ 6666.00',
                     style: TextStyle(
                         fontSize: 40.0,
@@ -115,95 +116,95 @@ class MainScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                       vertical: 12.0,
                       horizontal: 20.0,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 25.0,
-                              height: 25.0,
-                              decoration: const BoxDecoration(
-                                color: Colors.white54,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Center(
-                                child: Icon(
-                                  CupertinoIcons.arrow_down,
-                                  size: 12.0,
-                                  color: Colors.greenAccent,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 8.0,
-                            ),
-                            const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Income',
-                                  style: TextStyle(
-                                      fontSize: 14.0,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                Text(
-                                  '\$ 666.00',
-                                  style: TextStyle(
-                                      fontSize: 16.0,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              width: 25.0,
-                              height: 25.0,
-                              decoration: const BoxDecoration(
-                                color: Colors.white54,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Center(
-                                child: Icon(
-                                  CupertinoIcons.arrow_up,
-                                  size: 12.0,
-                                  color: Colors.redAccent,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 8.0,
-                            ),
-                            const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Expense',
-                                  style: TextStyle(
-                                      fontSize: 14.0,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                Text(
-                                  '\$ 666.00',
-                                  style: TextStyle(
-                                      fontSize: 16.0,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        // children: [
+                        // Container(
+                        //   width: 25.0,
+                        //   height: 25.0,
+                        //   decoration: const BoxDecoration(
+                        //     color: Colors.white54,
+                        //     shape: BoxShape.circle,
+                        //   ),
+                        //   child: const Center(
+                        //     child: Icon(
+                        //       CupertinoIcons.arrow_down,
+                        //       size: 12.0,
+                        //       color: Colors.greenAccent,
+                        //     ),
+                        //   ),
+                        // ),
+                        // const SizedBox(
+                        //   width: 8.0,
+                        // ),
+                        // const Column(
+                        //   crossAxisAlignment: CrossAxisAlignment.start,
+                        //   children: [
+                        //     Text(
+                        //       'Income',
+                        //       style: TextStyle(
+                        //           fontSize: 14.0,
+                        //           color: Colors.white,
+                        //           fontWeight: FontWeight.w400),
+                        //     ),
+                        //     Text(
+                        //       '\$ 666.00',
+                        //       style: TextStyle(
+                        //           fontSize: 16.0,
+                        //           color: Colors.white,
+                        //           fontWeight: FontWeight.w600),
+                        //     ),
+                        //   ],
+                        // ),
+                        //   ],
+                        // ),
+                        // Row(
+                        // children: [
+                        // Container(
+                        //   width: 25.0,
+                        //   height: 25.0,
+                        //   decoration: const BoxDecoration(
+                        //     color: Colors.white54,
+                        //     shape: BoxShape.circle,
+                        //   ),
+                        //   child: const Center(
+                        //     child: Icon(
+                        //       CupertinoIcons.arrow_up,
+                        //       size: 12.0,
+                        //       color: Colors.redAccent,
+                        //     ),
+                        //   ),
+                        // ),
+                        // const SizedBox(
+                        //   width: 8.0,
+                        // ),
+                        // const Column(
+                        //   crossAxisAlignment: CrossAxisAlignment.start,
+                        //   children: [
+                        //     Text(
+                        //       'Expense',
+                        //       style: TextStyle(
+                        //           fontSize: 14.0,
+                        //           color: Colors.white,
+                        //           fontWeight: FontWeight.w400),
+                        //     ),
+                        //     Text(
+                        //       '\$ 666.00',
+                        //       style: TextStyle(
+                        //           fontSize: 16.0,
+                        //           color: Colors.white,
+                        //           fontWeight: FontWeight.w600),
+                        //     ),
+                        // ],
+                        // ),
+                        // ],
+                        // ),
                       ],
                     ),
                   )
@@ -265,8 +266,8 @@ class MainScreen extends StatelessWidget {
                                     alignment: Alignment.center,
                                     children: [
                                       Container(
-                                        width: 50.0,
-                                        height: 50.0,
+                                        width: 70.0,
+                                        height: 70.0,
                                         decoration: BoxDecoration(
                                           color:
                                               Color(expenses[i].category.color),
@@ -275,8 +276,8 @@ class MainScreen extends StatelessWidget {
                                       ),
                                       Image.asset(
                                         'assets/categories/${expenses[i].category.icon}.gif',
-                                        scale: 2.0,
-                                        color: Colors.white,
+                                        scale: 7.0,
+                                        // color: Colors.white,
                                       ),
 
                                       // const Icon(
@@ -314,7 +315,8 @@ class MainScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    DateFormat('dd/MM/yyyy').format(expenses[i].date),
+                                    DateFormat('dd/MM/yyyy')
+                                        .format(expenses[i].date),
                                     style: TextStyle(
                                       fontSize: 14.0,
                                       color:
