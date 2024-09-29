@@ -59,4 +59,19 @@ class FirebaseExpenseRepo implements ExpenseRepository {
     }
   }
 
+  
+  @override
+  Future<List<Expense>> getExpensesByUserId(String userId) async {
+    try {
+      return await expenseCollection
+          .where('userId', isEqualTo: userId) // Filter by userId
+          .get()
+          .then((value) => value.docs.map((e) =>
+              Expense.fromEntity(ExpenseEntity.fromDocument(e.data()))
+          ).toList());
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
 }
