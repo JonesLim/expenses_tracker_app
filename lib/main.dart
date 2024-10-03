@@ -9,7 +9,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Bloc.observer = SimpleBlocObserver();
-  // await FirebaseAuth.instance.signOut();
-
+  
   runApp(MyApp(FirebaseUserRepo()));
 }

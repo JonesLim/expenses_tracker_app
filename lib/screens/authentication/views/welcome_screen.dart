@@ -32,7 +32,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   @override
   void dispose() {
-    iconController.dispose(); // Clean up the controller
+    iconController.dispose(); 
     tabController.dispose();
     super.dispose();
   }
@@ -121,6 +121,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                               color: Theme.of(context).colorScheme.primary,
                             ),
                             indicatorSize: TabBarIndicatorSize.tab,
+                              indicatorPadding: const EdgeInsets.symmetric(vertical: 10.0), // Adjust vertical padding
+
                             tabs: const [
                               Padding(
                                 padding: EdgeInsets.all(12.0),
