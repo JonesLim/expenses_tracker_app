@@ -17,7 +17,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 	bool signInRequired = false;
-	IconData iconPassword = CupertinoIcons.eye_fill;
+	IconData iconPassword = CupertinoIcons.eye_slash_fill;
 	bool obscurePassword = true;
 	String? _errorMsg;
 	
@@ -90,9 +90,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                 setState(() {
                                   obscurePassword = !obscurePassword;
                                   if(obscurePassword) {
-                                    iconPassword = CupertinoIcons.eye_fill;
-                                  } else {
                                     iconPassword = CupertinoIcons.eye_slash_fill;
+                                  } else {
+                                    iconPassword = CupertinoIcons.eye_fill;
                                   }
                                 });
                               },

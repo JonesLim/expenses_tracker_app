@@ -9,5 +9,4 @@ abstract class ExpenseRepository {
 
   Future<List<Expense>> getExpenses();
 
-  Future<List<Expense>> getExpensesByUserId(String userId);
 }

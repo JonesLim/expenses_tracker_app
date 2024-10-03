@@ -54,8 +54,6 @@ Future getCategoryCreation(BuildContext context) {
                         TextFormField(
                           controller: categoryNameCotroller,
                           textAlignVertical: TextAlignVertical.center,
-                          // readOnly: true,
-
                           decoration: InputDecoration(
                             isDense: true,
                             filled: true,
@@ -220,12 +218,14 @@ Future getCategoryCreation(BuildContext context) {
                                 )
                               : TextButton(
                                   onPressed: () {
-                                    // Category category = Category.empty;
-                                    setState(() {category.categoryId = const Uuid().v1();
-                                    category.name = categoryNameCotroller.text;
-                                    category.icon = iconSelected;
-                                    category.color = categoryColor.value;});
-                                    
+                                    setState(() {
+                                      category.categoryId = const Uuid().v1();
+                                      category.name =
+                                          categoryNameCotroller.text;
+                                      category.icon = iconSelected;
+                                      category.color = categoryColor.value;
+                                    });
+
                                     context
                                         .read<CreateCategoryBloc>()
                                         .add(CreateCategory(category));
