@@ -36,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           setState(() {
             signUpRequired = false;
           });
-          // Navigator.pop(context);
+
         } else if (state is SignUpProcess) {
           setState(() {
             signUpRequired = true;
@@ -46,7 +46,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         }
       },
       child: Scaffold(
-        backgroundColor: const Color(0xffabd3d7),
         body: SingleChildScrollView(
           child: Center(
             child: Form(

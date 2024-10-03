@@ -7,11 +7,11 @@ import 'package:expenses_tracker/screens/add_expense/blocs/get_categories_bloc/g
 import 'package:expenses_tracker/screens/add_expense/views/add_expense_screen.dart';
 import 'package:expenses_tracker/screens/home/blocs/get_expenses_bloc/get_expenses_bloc.dart';
 import 'package:expenses_tracker/screens/home/views/main_screen.dart';
-import 'package:expenses_tracker/screens/stats/stats_screen.dart';
+import 'package:expenses_tracker/screens/stats/stat_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lordicon/lordicon.dart'; // Import the Lordicon package
+import 'package:lordicon/lordicon.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   late Color selectedItem = Colors.blue;
   Color unSelectedItem = Colors.grey;
 
-  // Controllers for Lordicon animations
   late IconController homeController;
   late IconController graphController;
 
@@ -34,24 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     homeController = IconController.assets('assets/json/home.json');
     graphController = IconController.assets('assets/json/graph.json');
-
-    // Set up listeners to play animation when the controller is ready
-    homeController.addStatusListener((status) {
-      if (status == ControllerStatus.ready) {
-        homeController.playFromBeginning();
-      }
-    });
-
-    graphController.addStatusListener((status) {
-      if (status == ControllerStatus.ready) {
-        graphController.playFromBeginning();
-      }
-    });
   }
 
   @override
   void dispose() {
-    // Dispose controllers when no longer needed
     homeController.dispose();
     graphController.dispose();
     super.dispose();
@@ -63,52 +48,66 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, state) {
         if (state is GetExpensesSuccess) {
           return Scaffold(
-            bottomNavigationBar: BottomNavigationBar(
-              onTap: (value) {
-                setState(() {
-                  index = value;
+            bottomNavigationBar: Container(
+              decoration: BoxDecoration(
+                color: const Color.fromRGBO(0, 0, 0, 0.5),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(16.0),
+                  topRight: Radius.circular(16.0),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, -5),
+                  ),
+                ],
+              ),
+              child: BottomNavigationBar(
+                onTap: (value) {
+                  setState(() {
+                    index = value;
 
-                  if (index == 0) {
-                    homeController.playFromBeginning();
-                  } else {
-                    graphController.playFromBeginning();
-                  }
-                });
-              },
-              backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              elevation: 3,
-              items: [
-                BottomNavigationBarItem(
-                  icon: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                        index == 0 ? selectedItem : unSelectedItem,
-                        BlendMode.srcIn),
-                    child: IconViewer(
-                      controller: homeController,
-                      width: 30.0,
-                      height: 30.0,
-                      
+                    if (index == 0) {
+                      homeController.playFromBeginning();
+                    } else {
+                      graphController.playFromBeginning();
+                    }
+                  });
+                },
+                backgroundColor: Colors.transparent,
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                elevation: 0,
+                items: [
+                  BottomNavigationBarItem(
+                    icon: ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                          index == 0 ? selectedItem : unSelectedItem,
+                          BlendMode.srcIn),
+                      child: IconViewer(
+                        controller: homeController,
+                        width: 30.0,
+                        height: 30.0,
+                      ),
                     ),
-                    
+                    label: "Home",
                   ),
-                  label: "Home",
-                ),
-                BottomNavigationBarItem(
-                  icon: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                        index == 1 ? selectedItem : unSelectedItem,
-                        BlendMode.srcIn),
-                    child: IconViewer(
-                      controller: graphController,
-                      width: 30.0,
-                      height: 30.0,
+                  BottomNavigationBarItem(
+                    icon: ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                          index == 1 ? selectedItem : unSelectedItem,
+                          BlendMode.srcIn),
+                      child: IconViewer(
+                        controller: graphController,
+                        width: 30.0,
+                        height: 30.0,
+                      ),
                     ),
+                    label: "Graph",
                   ),
-                  label: "Graph",
-                ),
-              ],
+                ],
+              ),
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
@@ -136,7 +135,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                       child: const AddExpenseScreen(),
-                      // child: AddExpenseScreen(userId: '',),
                     ),
                   ),
                 );

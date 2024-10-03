@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:user_repository/src/models/user.dart';
 import 'package:user_repository/src/user_repo.dart';
-import 'package:user_repository/user_repository.dart';
 
 class FirebaseUserRepo implements UserRepository {
   final FirebaseAuth _firebaseAuth;
@@ -37,9 +36,11 @@ class FirebaseUserRepo implements UserRepository {
       UserCredential user = await _firebaseAuth.createUserWithEmailAndPassword(
           email: myUser.email, password: password);
 
-      myUser = myUser.copyWith(userId: user.user!.uid);
+      MyUser newUser = myUser.copyWith(userId: user.user!.uid);
 
-      return myUser;
+      await setUserData(newUser);
+
+      return newUser;
     } catch (e) {
       log(e.toString());
       rethrow;
@@ -61,21 +62,5 @@ class FirebaseUserRepo implements UserRepository {
   @override
   Future<void> logOut() async {
     await _firebaseAuth.signOut();
-  }
-
-  @override
-  Future<MyUser> getCurrentUserData() async {
-    final user = _firebaseAuth.currentUser;
-
-    if (user == null) {
-      throw Exception('No user is logged in');
-    }
-
-    final doc = await usersCollection.doc(user.uid).get();
-    if (!doc.exists) {
-      throw Exception('User not found');
-    }
-
-    return MyUser.fromEntity(MyUserEntity.fromDocument(doc.data()!));
   }
 }

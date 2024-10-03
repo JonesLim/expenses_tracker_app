@@ -9,8 +9,6 @@ import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 class AddExpenseScreen extends StatefulWidget {
-    // final String userId;
-
   const AddExpenseScreen({super.key});
 
   @override
@@ -21,7 +19,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
   TextEditingController expenseCotroller = TextEditingController();
   TextEditingController categoryCotroller = TextEditingController();
   TextEditingController dateCotroller = TextEditingController();
-  // DateTime selectDate = DateTime.now();
   late Expense expense;
   bool isLoading = false;
 
@@ -126,7 +123,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                               color: Theme.of(context).colorScheme.surface,
                             ),
                           ),
-                          // label: Text('Category'),
                           hintText: 'Category',
                           border: const OutlineInputBorder(
                             borderRadius: BorderRadius.vertical(
@@ -144,7 +140,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                             bottom: Radius.circular(12.0),
                           ),
                         ),
-                        // color: Colors.red,
                         child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ListView.builder(
@@ -194,7 +189,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                             setState(() {
                               dateCotroller.text =
                                   DateFormat('dd/MM/yyyy').format(newDate);
-                              // selectDate = newDate;
                               expense.date = newDate;
                             });
                           }
