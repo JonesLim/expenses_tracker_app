@@ -169,7 +169,7 @@ class _MainScreenState extends State<MainScreen> {
                       "Transactions",
                       style: TextStyle(
                         fontSize: 16.0,
-                        color: Theme.of(context).colorScheme.outline,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         shadows: [
                           Shadow(
@@ -271,7 +271,7 @@ class _MainScreenState extends State<MainScreen> {
                                   style: TextStyle(
                                     fontSize: 14.0,
                                     color:
-                                        Theme.of(context).colorScheme.outline,
+                                        Colors.white.withOpacity(0.7),
                                     fontWeight: FontWeight.w900,
                                   ),
                                 ),
