@@ -218,6 +218,8 @@ Future getCategoryCreation(BuildContext context) {
                                 )
                               : TextButton(
                                   onPressed: () {
+                                      print('Save button pressed');
+
                                     setState(() {
                                       category.categoryId = const Uuid().v1();
                                       category.name =
