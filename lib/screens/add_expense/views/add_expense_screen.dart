@@ -24,10 +24,11 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
 
   @override
   void initState() {
+    super.initState();
+
     dateCotroller.text = DateFormat('dd/MM/yyyy').format(DateTime.now());
     expense = Expense.empty;
     expense.expenseId = const Uuid().v1();
-    super.initState();
   }
 
   @override
@@ -40,6 +41,11 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
           setState(() {
             isLoading = true;
           });
+          } else if (state is CreateExpenseFailure) {
+          setState(() {
+            isLoading = false;
+          });
+        
         }
       },
       child: GestureDetector(
