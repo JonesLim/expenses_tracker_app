@@ -1,8 +1,6 @@
 import 'package:expenses_tracker/screens/stats/chart.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_repository/expense_repository.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class StatScreen extends StatefulWidget {
   const StatScreen({super.key});

@@ -53,8 +53,31 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         child: Scaffold(
           backgroundColor: Theme.of(context).colorScheme.surface,
           appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.surface,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+
+        elevation: 0,
+        title: Text(
+          "Add Your Expenses",
+          style: TextStyle(
+            fontSize: 22.0,
+            fontFamily: 'CustomFont',
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+            shadows: [
+              Shadow(
+                color: Colors.black.withOpacity(0.7),
+                offset: Offset(2.0, 2.0),
+                blurRadius: 4.0,
+              ),
+              Shadow(
+                color: Theme.of(context).colorScheme.onSurface,
+                offset: Offset(-1.0, -1.0),
+                blurRadius: 0.0,
+              ),
+            ],
           ),
+        ),
+      ),
           body: BlocBuilder<GetCategoriesBloc, GetCategoriesState>(
             builder: (context, state) {
               if (state is GetCategoriesSuccess) {
@@ -63,13 +86,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Add Expenses',
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                      
                       const SizedBox(
                         height: 32.0,
                       ),
@@ -80,7 +97,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                           textAlignVertical: TextAlignVertical.center,
                           decoration: InputDecoration(
                               filled: true,
-                              fillColor: Colors.white,
+                              fillColor: Colors.white.withOpacity(0.5),
+                              hintText: 'Amount',
                               prefixIcon: Icon(
                                 FontAwesomeIcons.dollarSign,
                                 size: 16.0,
@@ -102,7 +120,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: expense.category == Category.empty
-                              ? Colors.white
+                              ? Colors.white.withOpacity(0.7)
                               : Color(expense.category.color),
                           prefixIcon: expense.category == Category.empty
                               ? Icon(
@@ -140,8 +158,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                       Container(
                         height: 200.0,
                         width: MediaQuery.of(context).size.width,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
+                        decoration:  BoxDecoration(
+                          color: Colors.white.withOpacity(0.5),
                           borderRadius: BorderRadius.vertical(
                             bottom: Radius.circular(12.0),
                           ),
@@ -201,7 +219,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                         },
                         decoration: InputDecoration(
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: Colors.white.withOpacity(0.5),
                             prefixIcon: Icon(
                               FontAwesomeIcons.clock,
                               size: 16.0,
@@ -236,11 +254,11 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(12.0),
                                     )),
-                                child: const Text(
+                                child:  Text(
                                   'Save',
                                   style: TextStyle(
                                     fontSize: 22.0,
-                                    color: Colors.white,
+                                    color: Colors.white.withOpacity(0.7),
                                   ),
                                 ),
                               ),

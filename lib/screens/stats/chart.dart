@@ -62,8 +62,20 @@ class _MyChartState extends State<MyChart> with SingleTickerProviderStateMixin {
           child: Text(
             "Select Month: ${selectedDate.month}/${selectedDate.year}",
             style: TextStyle(
-              color: Theme.of(context).colorScheme.outline,
+              color: Colors.white,
               fontWeight: FontWeight.w900,
+               shadows: [
+              Shadow(
+                color: Colors.black.withOpacity(0.7),
+                offset: Offset(2.0, 2.0),
+                blurRadius: 4.0,
+              ),
+              Shadow(
+                color: Theme.of(context).colorScheme.onSurface,
+                offset: Offset(-1.0, -1.0),
+                blurRadius: 0.0,
+              ),
+            ],
             ),
           ),
         ),
