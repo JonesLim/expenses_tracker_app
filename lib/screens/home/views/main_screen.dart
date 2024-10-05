@@ -15,13 +15,51 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  int _sortState = 0; // 0: default, 1: highest to lowest, 2: lowest to highest, 3: date
+  List<Expense> _sortedExpenses = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Sort by date in descending order by default
+    _sortedExpenses = List.from(widget.expenses)
+      ..sort((a, b) => b.date.compareTo(a.date));
+  }
+
+  void _sortExpenses() {
+    setState(() {
+      if (_sortState == 0) {
+        _sortedExpenses.sort((a, b) => b.amount.compareTo(a.amount));
+        _sortState = 1; // Highest to lowest amount
+      } else if (_sortState == 1) {
+        _sortedExpenses.sort((a, b) => a.amount.compareTo(b.amount));
+        _sortState = 2; // Lowest to highest amount
+      } else if (_sortState == 2) {
+        // Sort by date (newest to oldest)
+        _sortedExpenses.sort((a, b) => b.date.compareTo(a.date));
+        _sortState = 3; // Sort by date
+      } else {
+        // Reset to default state
+        _sortedExpenses = List.from(widget.expenses)
+          ..sort((a, b) => b.date.compareTo(a.date));
+        _sortState = 0; // Default state
+      }
+    });
+  }
+
+  IconData _getSortIcon() {
+    if (_sortState == 1) {
+      return CupertinoIcons.arrow_up;
+    } else if (_sortState == 2) {
+      return CupertinoIcons.arrow_down;
+    } 
+    return CupertinoIcons.arrow_up_down;
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Expense> sortedExpenses = List.from(widget.expenses)
-      ..sort((a, b) => b.date.compareTo(a.date));
-
     double totalAmount =
-        sortedExpenses.fold(0, (sum, expense) => sum + expense.amount);
+        _sortedExpenses.fold(0, (sum, expense) => sum + expense.amount);
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -163,39 +201,41 @@ class _MainScreenState extends State<MainScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Text(
-                      "Transactions",
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        shadows: [
-                          Shadow(
-                            color: Colors.black.withOpacity(0.7),
-                            offset: Offset(2.0, 2.0),
-                            blurRadius: 4.0,
-                          ),
-                          Shadow(
-                            color: Theme.of(context).colorScheme.onSurface,
-                            offset: Offset(-1.0, -1.0),
-                            blurRadius: 0.0,
-                          ),
-                        ],
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: _sortExpenses,
+                        child: Row(
+                          children: [
+                            Text(
+                              "Transactions",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                shadows: [
+                                  Shadow(
+                                    color: Colors.black.withOpacity(0.7),
+                                    offset: Offset(2.0, 2.0),
+                                    blurRadius: 4.0,
+                                  ),
+                                  Shadow(
+                                    color:
+                                        Theme.of(context).colorScheme.onSurface,
+                                    offset: Offset(-1.0, -1.0),
+                                    blurRadius: 0.0,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                   GestureDetector(
-                    onTap: () {},
-                    child: Text(
-                      "View All",
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        color: Theme.of(context).colorScheme.onSurface,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
+                    onTap: _sortExpenses, // Make icon clickable
+                    child: Icon(_getSortIcon(), color: Colors.white),
                   ),
                 ],
               ),
@@ -203,7 +243,7 @@ class _MainScreenState extends State<MainScreen> {
                 height: 20.0,
               ),
               ListView.builder(
-                itemCount: sortedExpenses.length,
+                itemCount: _sortedExpenses.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, int i) {
@@ -229,12 +269,12 @@ class _MainScreenState extends State<MainScreen> {
                                       height: 70.0,
                                       decoration: BoxDecoration(
                                         color: Color(
-                                            sortedExpenses[i].category.color),
+                                            _sortedExpenses[i].category.color),
                                         shape: BoxShape.circle,
                                       ),
                                     ),
                                     Image.asset(
-                                      'assets/categories/${sortedExpenses[i].category.icon}.gif',
+                                      'assets/categories/${_sortedExpenses[i].category.icon}.gif',
                                       scale: 7.0,
                                     ),
                                   ],
@@ -243,7 +283,7 @@ class _MainScreenState extends State<MainScreen> {
                                   width: 12.0,
                                 ),
                                 Text(
-                                  sortedExpenses[i].category.name,
+                                  _sortedExpenses[i].category.name,
                                   style: TextStyle(
                                     fontSize: 14.0,
                                     color:
@@ -257,17 +297,17 @@ class _MainScreenState extends State<MainScreen> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "\$${sortedExpenses[i].amount}.00",
+                                  "\$${_sortedExpenses[i].amount}.00",
                                   style: TextStyle(
                                     fontSize: 14.0,
                                     color:
                                         Theme.of(context).colorScheme.onSurface,
-                                    fontWeight: FontWeight.w900,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
-                                  DateFormat('dd/MM/yyyy')
-                                      .format(sortedExpenses[i].date),
+                                  DateFormat('yyyy-MM-dd')
+                                      .format(_sortedExpenses[i].date),
                                   style: TextStyle(
                                     fontSize: 14.0,
                                     color:
