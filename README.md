@@ -88,28 +88,23 @@ The development of this Expenses Tracker application follows a detailed project 
 ### Screenshots
 
 #### Sign In Screen
-
-![Sign In Screen](./assets/screenshots/signin_screen.png)
+<img src="./assets/screenshots/signin_screen.png" alt="Sign In Screen" width="200" />
 
 #### Sign Up Screen
-
-![Sign Up Screen](./assets/screenshots/signup_screen.png)
+<img src="./assets/screenshots/signup_screen.png" alt="Sign Up Screen" width="200" />
 
 #### Home Screen
-
-![Home Screen](./assets/screenshots/home_screen.png)
+<img src="./assets/screenshots/home_screen.png" alt="Home Screen" width="200" />
 
 #### Add Expenses Screen
-
-![Add Expenses Screen](./assets/screenshots/add_expenses_screen.png)
+<img src="./assets/screenshots/add_expenses_screen.png" alt="Add Expenses Screen" width="200" />
 
 #### Stats Screen
-
-![Stats Screen](./assets/screenshots/stats_screen.png)
+<img src="./assets/screenshots/stats_screen.png" alt="Stats Screen" width="200" />
 
 #### Profile Screen
+<img src="./assets/screenshots/profile_screen.png" alt="Profile Screen" width="200" />
 
-![Profile Screen](./assets/screenshots/profile_screen.png)
 
 ### Technologies Used
 
