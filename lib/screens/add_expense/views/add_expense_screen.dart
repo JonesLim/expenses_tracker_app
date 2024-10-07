@@ -31,6 +31,19 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     expense.expenseId = const Uuid().v1();
   }
 
+  void _showSnackbar(BuildContext context, String message) {
+    final snackBar = SnackBar(
+      content: Text(
+        message,
+        style: const TextStyle(
+          color: Colors.red,
+        ),
+      ),
+      backgroundColor: Colors.white.withOpacity(0.7),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<CreateExpenseBloc, CreateExpenseState>(
@@ -41,11 +54,10 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
           setState(() {
             isLoading = true;
           });
-          } else if (state is CreateExpenseFailure) {
+        } else if (state is CreateExpenseFailure) {
           setState(() {
             isLoading = false;
           });
-        
         }
       },
       child: GestureDetector(
@@ -53,31 +65,30 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         child: Scaffold(
           backgroundColor: Theme.of(context).colorScheme.surface,
           appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.surface,
-
-        elevation: 0,
-        title: Text(
-          "Add Your Expenses",
-          style: TextStyle(
-            fontSize: 22.0,
-            fontFamily: 'CustomFont',
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
-            shadows: [
-              Shadow(
-                color: Colors.black.withOpacity(0.7),
-                offset: Offset(2.0, 2.0),
-                blurRadius: 4.0,
+            backgroundColor: Theme.of(context).colorScheme.surface,
+            elevation: 0,
+            title: Text(
+              "Add Your Expenses",
+              style: TextStyle(
+                fontSize: 22.0,
+                fontFamily: 'CustomFont',
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+                shadows: [
+                  Shadow(
+                    color: Colors.black.withOpacity(0.7),
+                    offset: const Offset(2.0, 2.0),
+                    blurRadius: 4.0,
+                  ),
+                  Shadow(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    offset: const Offset(-1.0, -1.0),
+                    blurRadius: 0.0,
+                  ),
+                ],
               ),
-              Shadow(
-                color: Theme.of(context).colorScheme.onSurface,
-                offset: Offset(-1.0, -1.0),
-                blurRadius: 0.0,
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
           body: BlocBuilder<GetCategoriesBloc, GetCategoriesState>(
             builder: (context, state) {
               if (state is GetCategoriesSuccess) {
@@ -86,7 +97,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      
                       const SizedBox(
                         height: 32.0,
                       ),
@@ -158,9 +168,9 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                       Container(
                         height: 200.0,
                         width: MediaQuery.of(context).size.width,
-                        decoration:  BoxDecoration(
+                        decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.5),
-                          borderRadius: BorderRadius.vertical(
+                          borderRadius: const BorderRadius.vertical(
                             bottom: Radius.circular(12.0),
                           ),
                         ),
@@ -240,21 +250,35 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                             ? const Center(child: CircularProgressIndicator())
                             : TextButton(
                                 onPressed: () {
-                                  setState(() {
-                                    expense.amount =
-                                        int.parse(expenseCotroller.text);
-                                  });
+                                  // Validate that all fields are filled
+                                  if (expenseCotroller.text.isEmpty) {
+                                    _showSnackbar(
+                                        context, 'Please enter an amount.');
+                                  } else if (expense.category ==
+                                      Category.empty) {
+                                    _showSnackbar(
+                                        context, 'Please select a category.');
+                                  } else if (dateCotroller.text.isEmpty) {
+                                    _showSnackbar(
+                                        context, 'Please select a date.');
+                                  } else {
+                                    // If all fields are filled, proceed to save the expense
+                                    setState(() {
+                                      expense.amount =
+                                          int.parse(expenseCotroller.text);
+                                    });
 
-                                  context
-                                      .read<CreateExpenseBloc>()
-                                      .add(CreateExpense(expense));
+                                    context
+                                        .read<CreateExpenseBloc>()
+                                        .add(CreateExpense(expense));
+                                  }
                                 },
                                 style: TextButton.styleFrom(
                                     backgroundColor: Colors.black,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(12.0),
                                     )),
-                                child:  Text(
+                                child: Text(
                                   'Save',
                                   style: TextStyle(
                                     fontSize: 22.0,
