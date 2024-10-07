@@ -293,10 +293,15 @@ Future getCategoryCreation(BuildContext context) {
                                             Colors.white.withOpacity(0.5)) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
-                                        const SnackBar(
-                                          content:
-                                              Text('Please fill all fields.'),
-                                          backgroundColor: Colors.red,
+                                        SnackBar(
+                                          content: const Text(
+                                            'Please fill all fields.',
+                                            style: TextStyle(
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                          backgroundColor:
+                                              Colors.white.withOpacity(0.7),
                                         ),
                                       );
                                     } else {
