@@ -6,7 +6,7 @@ class AnimatedBackground extends StatefulWidget {
   const AnimatedBackground({super.key, required this.onColorChanged});
 
   @override
-  _AnimatedBackgroundState createState() => _AnimatedBackgroundState();
+  State<AnimatedBackground> createState() => _AnimatedBackgroundState();
 }
 
 class _AnimatedBackgroundState extends State<AnimatedBackground>
