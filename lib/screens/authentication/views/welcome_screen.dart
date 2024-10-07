@@ -32,7 +32,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   @override
   void dispose() {
-    iconController.dispose(); 
+    iconController.dispose();
     tabController.dispose();
     super.dispose();
   }
@@ -88,14 +88,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   alignment: Alignment.topCenter,
                   child: GestureDetector(
                     onTap: () {
-                      iconController
-                          .playFromBeginning(); 
+                      iconController.playFromBeginning();
                     },
                     child: SizedBox(
                       height: 500,
                       width: 500,
                       child: IconViewer(
-                        controller: iconController, 
+                        controller: iconController,
                         height: 500,
                       ),
                     ),
@@ -121,8 +120,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                               color: Theme.of(context).colorScheme.primary,
                             ),
                             indicatorSize: TabBarIndicatorSize.tab,
-                              indicatorPadding: const EdgeInsets.symmetric(vertical: 10.0), // Adjust vertical padding
-
+                            indicatorPadding:
+                                const EdgeInsets.symmetric(vertical: 10.0),
                             tabs: const [
                               Padding(
                                 padding: EdgeInsets.all(12.0),

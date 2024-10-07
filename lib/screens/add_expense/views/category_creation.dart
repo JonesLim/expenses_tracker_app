@@ -146,7 +146,6 @@ Future getCategoryCreation(BuildContext context) {
                                           });
                                         },
                                         onLongPress: () {
-                                          // Show Tooltip or Dialog with the description
                                           showDialog(
                                             context: context,
                                             builder: (ctx2) {
@@ -160,16 +159,16 @@ Future getCategoryCreation(BuildContext context) {
                                                       Shadow(
                                                         color: Colors.black
                                                             .withOpacity(0.7),
-                                                        offset:
-                                                            Offset(2.0, 2.0),
+                                                        offset: const Offset(
+                                                            2.0, 2.0),
                                                         blurRadius: 4.0,
                                                       ),
                                                       Shadow(
                                                         color: Theme.of(context)
                                                             .colorScheme
                                                             .onSurface,
-                                                        offset:
-                                                            Offset(-1.0, -1.0),
+                                                        offset: const Offset(
+                                                            -1.0, -1.0),
                                                         blurRadius: 0.0,
                                                       ),
                                                     ],
@@ -288,17 +287,31 @@ Future getCategoryCreation(BuildContext context) {
                                 )
                               : TextButton(
                                   onPressed: () {
-                                    setState(() {
-                                      category.categoryId = const Uuid().v1();
-                                      category.name =
-                                          categoryNameController.text;
-                                      category.icon = iconSelected;
-                                      category.color = categoryColor.value;
-                                    });
+                                    if (categoryNameController.text.isEmpty ||
+                                        iconSelected.isEmpty ||
+                                        categoryColor ==
+                                            Colors.white.withOpacity(0.5)) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content:
+                                              Text('Please fill all fields.'),
+                                          backgroundColor: Colors.red,
+                                        ),
+                                      );
+                                    } else {
+                                      setState(() {
+                                        category.categoryId = const Uuid().v1();
+                                        category.name =
+                                            categoryNameController.text;
+                                        category.icon = iconSelected;
+                                        category.color = categoryColor.value;
+                                      });
 
-                                    context
-                                        .read<CreateCategoryBloc>()
-                                        .add(CreateCategory(category));
+                                      context
+                                          .read<CreateCategoryBloc>()
+                                          .add(CreateCategory(category));
+                                    }
                                   },
                                   style: TextButton.styleFrom(
                                     backgroundColor: Colors.black,

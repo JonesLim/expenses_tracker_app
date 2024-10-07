@@ -15,13 +15,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _sortState = 0; // 0: default, 1: highest to lowest, 2: lowest to highest, 3: date
+  int _sortState = 0;
   List<Expense> _sortedExpenses = [];
 
   @override
   void initState() {
     super.initState();
-    // Sort by date in descending order by default
     _sortedExpenses = List.from(widget.expenses)
       ..sort((a, b) => b.date.compareTo(a.date));
   }
@@ -30,19 +29,17 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       if (_sortState == 0) {
         _sortedExpenses.sort((a, b) => b.amount.compareTo(a.amount));
-        _sortState = 1; // Highest to lowest amount
+        _sortState = 1;
       } else if (_sortState == 1) {
         _sortedExpenses.sort((a, b) => a.amount.compareTo(b.amount));
-        _sortState = 2; // Lowest to highest amount
+        _sortState = 2;
       } else if (_sortState == 2) {
-        // Sort by date (newest to oldest)
         _sortedExpenses.sort((a, b) => b.date.compareTo(a.date));
-        _sortState = 3; // Sort by date
+        _sortState = 3;
       } else {
-        // Reset to default state
         _sortedExpenses = List.from(widget.expenses)
           ..sort((a, b) => b.date.compareTo(a.date));
-        _sortState = 0; // Default state
+        _sortState = 0;
       }
     });
   }
@@ -52,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
       return CupertinoIcons.arrow_up;
     } else if (_sortState == 2) {
       return CupertinoIcons.arrow_down;
-    } 
+    }
     return CupertinoIcons.arrow_up_down;
   }
 
@@ -234,7 +231,7 @@ class _MainScreenState extends State<MainScreen> {
                     ],
                   ),
                   GestureDetector(
-                    onTap: _sortExpenses, // Make icon clickable
+                    onTap: _sortExpenses,
                     child: Icon(_getSortIcon(), color: Colors.white),
                   ),
                 ],
@@ -310,8 +307,7 @@ class _MainScreenState extends State<MainScreen> {
                                       .format(_sortedExpenses[i].date),
                                   style: TextStyle(
                                     fontSize: 14.0,
-                                    color:
-                                        Colors.white.withOpacity(0.7),
+                                    color: Colors.white.withOpacity(0.7),
                                     fontWeight: FontWeight.w900,
                                   ),
                                 ),
