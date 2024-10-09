@@ -4,7 +4,7 @@ class About extends StatefulWidget {
   const About({super.key});
 
   @override
-  _AboutState createState() => _AboutState();
+  State<About> createState() => _AboutState();
 }
 
 class _AboutState extends State<About> with SingleTickerProviderStateMixin {
@@ -84,12 +84,12 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                         shadows: [
                           Shadow(
                             color: Colors.black.withOpacity(0.7),
-                            offset: Offset(2.0, 2.0),
+                            offset: const Offset(2.0, 2.0),
                             blurRadius: 4.0,
                           ),
                           Shadow(
                             color: Theme.of(context).colorScheme.onSurface,
-                            offset: Offset(-1.0, -1.0),
+                            offset: const Offset(-1.0, -1.0),
                             blurRadius: 0.0,
                           ),
                         ],
@@ -113,12 +113,12 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                           shadows: [
                             Shadow(
                               color: Colors.black.withOpacity(0.7),
-                              offset: Offset(2.0, 2.0),
+                              offset: const Offset(2.0, 2.0),
                               blurRadius: 4.0,
                             ),
                             Shadow(
                               color: Theme.of(context).colorScheme.onSurface,
-                              offset: Offset(-1.0, -1.0),
+                              offset: const Offset(-1.0, -1.0),
                               blurRadius: 0.0,
                             ),
                           ],

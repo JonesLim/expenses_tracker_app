@@ -90,13 +90,13 @@ class _MainScreenState extends State<MainScreen> {
                               shadows: [
                                 Shadow(
                                   color: Colors.black.withOpacity(0.7),
-                                  offset: Offset(2.0, 2.0),
+                                  offset: const Offset(2.0, 2.0),
                                   blurRadius: 4.0,
                                 ),
                                 Shadow(
                                   color:
                                       Theme.of(context).colorScheme.onSurface,
-                                  offset: Offset(-1.0, -1.0),
+                                  offset: const Offset(-1.0, -1.0),
                                   blurRadius: 0.0,
                                 ),
                               ],
@@ -111,7 +111,7 @@ class _MainScreenState extends State<MainScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ProfileScreen(),
+                          builder: (context) => const ProfileScreen(),
                         ),
                       );
                     },
@@ -155,12 +155,12 @@ class _MainScreenState extends State<MainScreen> {
                         shadows: [
                           Shadow(
                             color: Colors.black.withOpacity(0.7),
-                            offset: Offset(2.0, 2.0),
+                            offset: const Offset(2.0, 2.0),
                             blurRadius: 4.0,
                           ),
                           Shadow(
                             color: Theme.of(context).colorScheme.onSurface,
-                            offset: Offset(-1.0, -1.0),
+                            offset: const Offset(-1.0, -1.0),
                             blurRadius: 0.0,
                           ),
                         ],
@@ -178,12 +178,12 @@ class _MainScreenState extends State<MainScreen> {
                         shadows: [
                           Shadow(
                             color: Colors.black.withOpacity(0.7),
-                            offset: Offset(2.0, 2.0),
+                            offset: const Offset(2.0, 2.0),
                             blurRadius: 4.0,
                           ),
                           Shadow(
                             color: Theme.of(context).colorScheme.onSurface,
-                            offset: Offset(-1.0, -1.0),
+                            offset: const Offset(-1.0, -1.0),
                             blurRadius: 0.0,
                           ),
                         ],
@@ -213,13 +213,13 @@ class _MainScreenState extends State<MainScreen> {
                                 shadows: [
                                   Shadow(
                                     color: Colors.black.withOpacity(0.7),
-                                    offset: Offset(2.0, 2.0),
+                                    offset: const Offset(2.0, 2.0),
                                     blurRadius: 4.0,
                                   ),
                                   Shadow(
                                     color:
                                         Theme.of(context).colorScheme.onSurface,
-                                    offset: Offset(-1.0, -1.0),
+                                    offset: const Offset(-1.0, -1.0),
                                     blurRadius: 0.0,
                                   ),
                                 ],
@@ -239,87 +239,134 @@ class _MainScreenState extends State<MainScreen> {
               const SizedBox(
                 height: 20.0,
               ),
-              ListView.builder(
-                itemCount: _sortedExpenses.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, int i) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Container(
-                                      width: 70.0,
-                                      height: 70.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(
-                                            _sortedExpenses[i].category.color),
-                                        shape: BoxShape.circle,
-                                      ),
-                                    ),
-                                    Image.asset(
-                                      'assets/categories/${_sortedExpenses[i].category.icon}.gif',
-                                      scale: 7.0,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  width: 12.0,
-                                ),
-                                Text(
-                                  _sortedExpenses[i].category.name,
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    color:
-                                        Theme.of(context).colorScheme.onSurface,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
+              _sortedExpenses.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: _sortedExpenses.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, int i) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(12.0),
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  "\$${_sortedExpenses[i].amount}.00",
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    color:
-                                        Theme.of(context).colorScheme.onSurface,
-                                    fontWeight: FontWeight.bold,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Container(
+                                            width: 70.0,
+                                            height: 70.0,
+                                            decoration: BoxDecoration(
+                                              color: Color(_sortedExpenses[i]
+                                                  .category
+                                                  .color),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            'assets/categories/${_sortedExpenses[i].category.icon}.gif',
+                                            scale: 7.0,
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        width: 12.0,
+                                      ),
+                                      Text(
+                                        _sortedExpenses[i].category.name,
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSurface,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                Text(
-                                  DateFormat('yyyy-MM-dd')
-                                      .format(_sortedExpenses[i].date),
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.white.withOpacity(0.7),
-                                    fontWeight: FontWeight.w900,
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "\$${_sortedExpenses[i].amount}.00",
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSurface,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        DateFormat('yyyy-MM-dd')
+                                            .format(_sortedExpenses[i].date),
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.white.withOpacity(0.7),
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                  : Column(
+                      children: [
+                        Icon(
+                          CupertinoIcons.money_dollar_circle,
+                          size: 50.0,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black.withOpacity(0.7),
+                              offset: const Offset(2.0, 2.0),
+                              blurRadius: 4.0,
+                            ),
+                            Shadow(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              offset: const Offset(-1.0, -1.0),
+                              blurRadius: 0.0,
                             ),
                           ],
                         ),
-                      ),
+                        const SizedBox(height: 16.0),
+                        Text(
+                          "No expenses available",
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            shadows: [
+                              Shadow(
+                                color: Colors.black.withOpacity(0.7),
+                                offset: const Offset(2.0, 2.0),
+                                blurRadius: 4.0,
+                              ),
+                              Shadow(
+                                color: Theme.of(context).colorScheme.onSurface,
+                                offset: const Offset(-1.0, -1.0),
+                                blurRadius: 0.0,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  );
-                },
-              ),
             ],
           ),
         ),

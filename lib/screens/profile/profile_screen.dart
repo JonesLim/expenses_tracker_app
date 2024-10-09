@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:user_repository/user_repository.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -12,7 +14,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final FirebaseUserRepo _userRepo = FirebaseUserRepo();
   String? _userEmail;
-  String _profileImage = 'assets/profile/profile.gif';
+  final String _profileImage = 'assets/profile/profile.gif';
 
   @override
   void initState() {
@@ -38,8 +40,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Log Out"),
-          content: Text("Are you sure you want to log out?"),
+          title: const Text("Log Out"),
+          content: const Text("Are you sure you want to log out?"),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
@@ -90,12 +92,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             shadows: [
               Shadow(
                 color: Colors.black.withOpacity(0.7),
-                offset: Offset(2.0, 2.0),
+                offset: const Offset(2.0, 2.0),
                 blurRadius: 4.0,
               ),
               Shadow(
                 color: Theme.of(context).colorScheme.onSurface,
-                offset: Offset(-1.0, -1.0),
+                offset: const Offset(-1.0, -1.0),
                 blurRadius: 0.0,
               ),
             ],
@@ -108,12 +110,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             padding: const EdgeInsets.symmetric(vertical: 20.0),
             child: Column(
               children: [
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 CircleAvatar(
                   radius: 50,
                   backgroundImage: AssetImage(_profileImage),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                   _userEmail ?? "Loading...",
                   style: TextStyle(
@@ -125,12 +127,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-          Divider(),
+          const Divider(),
           Expanded(
             child: ListView(
               children: [
                 ListTile(
-                  leading: Icon(Icons.person),
+                  leading: const Icon(Icons.person),
                   title: Text(
                     "My Profile",
                     style: TextStyle(
@@ -142,7 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: Icon(Icons.help_outline),
+                  leading: const Icon(Icons.help_outline),
                   title: Text(
                     "About",
                     style: TextStyle(
@@ -151,16 +153,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       fontWeight: FontWeight.w900,
                     ),
                   ),
-                  trailing: Icon(Icons.arrow_forward_ios),
+                  trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => About()),
+                      MaterialPageRoute(builder: (context) => const About()),
                     );
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.logout),
+                  leading: const Icon(Icons.logout),
                   title: Text(
                     "Log Out",
                     style: TextStyle(
@@ -169,7 +171,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       fontWeight: FontWeight.w900,
                     ),
                   ),
-                  trailing: Icon(Icons.arrow_forward_ios),
+                  trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () => _logOut(context),
                 ),
               ],

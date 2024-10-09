@@ -6,7 +6,7 @@ class StatScreen extends StatefulWidget {
   const StatScreen({super.key});
 
   @override
-  _StatScreenState createState() => _StatScreenState();
+  State<StatScreen> createState() => _StatScreenState();
 }
 
 class _StatScreenState extends State<StatScreen> {
@@ -24,7 +24,7 @@ class _StatScreenState extends State<StatScreen> {
       final repository = FirebaseExpenseRepo();
       expenses = await repository.getExpenses();
     } catch (e) {
-      print("Error fetching expenses: $e");
+      debugPrint("Error fetching expenses: $e");
     } finally {
       setState(() {
         isLoading = false;
@@ -52,12 +52,12 @@ class _StatScreenState extends State<StatScreen> {
                 shadows: [
                   Shadow(
                     color: Colors.black.withOpacity(0.7),
-                    offset: Offset(2.0, 2.0),
+                    offset: const Offset(2.0, 2.0),
                     blurRadius: 4.0,
                   ),
                   Shadow(
                     color: Theme.of(context).colorScheme.onSurface,
-                    offset: Offset(-1.0, -1.0),
+                    offset: const Offset(-1.0, -1.0),
                     blurRadius: 0.0,
                   ),
                 ],
@@ -74,7 +74,7 @@ class _StatScreenState extends State<StatScreen> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(12.0, 20.0, 12.0, 12.0),
                 child: isLoading
-                    ? Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator())
                     : MyChart(expenses),
               ),
             ),
