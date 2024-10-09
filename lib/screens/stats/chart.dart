@@ -67,19 +67,19 @@ class _MyChartState extends State<MyChart> with SingleTickerProviderStateMixin {
                shadows: [
               Shadow(
                 color: Colors.black.withOpacity(0.7),
-                offset: Offset(2.0, 2.0),
+                offset: const Offset(2.0, 2.0),
                 blurRadius: 4.0,
               ),
               Shadow(
                 color: Theme.of(context).colorScheme.onSurface,
-                offset: Offset(-1.0, -1.0),
+                offset: const Offset(-1.0, -1.0),
                 blurRadius: 0.0,
               ),
             ],
             ),
           ),
         ),
-        SizedBox(height: 10.0),
+        const SizedBox(height: 10.0),
         Expanded(
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,

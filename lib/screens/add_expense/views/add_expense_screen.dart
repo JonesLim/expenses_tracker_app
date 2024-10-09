@@ -146,7 +146,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                             onPressed: () async {
                               var newCategory =
                                   await getCategoryCreation(context);
-                              print(newCategory);
+                              debugPrint(newCategory);
                               setState(() {
                                 state.categories.insert(0, newCategory);
                               });

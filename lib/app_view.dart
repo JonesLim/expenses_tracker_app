@@ -12,7 +12,7 @@ class MyAppView extends StatefulWidget {
   const MyAppView({super.key});
 
   @override
-  _MyAppViewState createState() => _MyAppViewState();
+  State<MyAppView> createState() => _MyAppViewState();
 }
 
 class _MyAppViewState extends State<MyAppView> {
