@@ -250,7 +250,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                             ? const Center(child: CircularProgressIndicator())
                             : TextButton(
                                 onPressed: () {
-                                  // Validate that all fields are filled
                                   if (expenseCotroller.text.isEmpty) {
                                     _showSnackbar(
                                         context, 'Please enter an amount.');
@@ -262,7 +261,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                                     _showSnackbar(
                                         context, 'Please select a date.');
                                   } else {
-                                    // If all fields are filled, proceed to save the expense
                                     setState(() {
                                       expense.amount =
                                           int.parse(expenseCotroller.text);

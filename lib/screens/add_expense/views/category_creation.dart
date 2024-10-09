@@ -29,13 +29,13 @@ Future getCategoryCreation(BuildContext context) {
     'Health & Fitness',
     'Shopping',
     'Travel & Vacations',
-    'Pet Expenses',
+    'Pet',
     'Agriculture',
     'Education & Learning',
     'Home Expenses',
     'Sports',
     'Tech & Gadgets',
-    'Vehicle Expenses',
+    'Vehicle',
     'Other Miscellaneous',
   ];
 
