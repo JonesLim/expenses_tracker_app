@@ -8,7 +8,7 @@ The Expenses Tracker is a mobile application built with Flutter and Firebase des
 
 Objectives:
 
-- Expense Recording: Enable users to log daily expenses, categorize them, and add optional notes.
+- Expense Recording: Enable users to log daily expenses, categorize them.
 
 - Budget Tracking: Allow users to set and monitor monthly budgets.
 
