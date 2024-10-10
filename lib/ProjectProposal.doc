@@ -1,0 +1,45 @@
+Project Proposal:
+
+Project Title:
+Expenses Tracker
+
+Project Overview:
+The Expenses Tracker is a mobile application built with Flutter and Firebase designed to help users track and manage their daily expenses. The app will provide essential features such as expense recording, budget tracking, and data visualization within a tight one-month development timeline. Firebase will handle real-time data synchronization, user authentication, and secure data storage, ensuring a seamless experience across devices.
+
+Objectives:
+
+- Expense Recording: Enable users to log daily expenses, categorize them, and add optional notes.
+
+- Budget Tracking: Allow users to set and monitor monthly budgets.
+
+- Data Visualization: Offer basic graphical representations (bar charts) to help users analyze spending patterns.
+
+- User Authentication: Implement Firebase Authentication for secure user sign-up, login, and data access.
+
+- Real-Time Sync: Use Firebase Firestore to sync data across devices instantly.
+
+Key Features (Prioritized for 2 Weeks Timeline):
+
+- User Authentication: Simple sign-up and login using Firebase Authentication.
+
+- Expense Management: Add expenses with categories.
+
+- Budget Tracking: Set and track monthly budgets with progress indicators.
+
+- Data Visualization: Bar chart to visualize spending patterns.
+
+- Real-Time Sync: Firebase Firestore for syncing data across multiple devices.
+
+Technology Stack:
+
+- Frontend: Flutter (Dart)
+
+- Backend: Firebase Firestore, Firebase Authentication
+
+- Data Visualization: Fl Chart
+
+Target Audience:
+
+- Individuals who need a straightforward and efficient tool to track their expenses and budgets.
+
+- Users seeking real-time access to their financial data across devices.
